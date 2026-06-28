@@ -1,4 +1,5 @@
 import { createServerSupabase } from '@/lib/supabase/server';
+import type { Artist } from '@/lib/types';
 import Hero from '@/components/vitrine/Hero';
 import Manifesto from '@/components/vitrine/Manifesto';
 import Authority from '@/components/vitrine/Authority';
@@ -10,13 +11,37 @@ import Footer from '@/components/vitrine/Footer';
 
 export const revalidate = 60;
 
+// Conteudo provisorio: garante que a vitrine sempre apareca, mesmo que o
+// Supabase esteja indisponivel, sem dados ou com credenciais incorretas.
+const FALLBACK_ARTIST: Artist = {
+  id: 'preview',
+  slug: 'apolo-oliver',
+  name: 'Apolo Oliver',
+  tagline: 'DJ & Producer — Tribal House',
+  bio: '',
+  epk_url: null,
+  booking_email: 'booking@apolooliver.com',
+  booking_whatsapp: null,
+  spotify_url: null,
+  soundcloud_url: null,
+  instagram_url: null,
+  youtube_url: null,
+  tiktok_url: null,
+  hero_image_url: null,
+  created_at: new Date().toISOString(),
+};
+
 async function getArtistData() {
   const supabase = createServerSupabase();
-  const { data: artist } = await supabase
+  const { data: artist, error } = await supabase
     .from('artists')
     .select('*')
     .eq('slug', 'apolo-oliver')
     .single();
+
+  if (error) {
+    console.error('[home] falha ao buscar artista:', error.message);
+  }
 
   if (!artist) return null;
 
@@ -36,15 +61,12 @@ async function getArtistData() {
 
 export default async function HomePage() {
   const data = await getArtistData();
-  if (!data) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-cream-dim text-lg">Configurando site...</p>
-      </div>
-    );
-  }
 
-  const { artist, content, schedule, authority } = data;
+  const artist: Artist = data?.artist ?? FALLBACK_ARTIST;
+  const content = data?.content ?? [];
+  const schedule = data?.schedule ?? [];
+  const authority = data?.authority ?? [];
+
   const getContent = (section: string, key: string) =>
     content.find((c: any) => c.section === section && c.key === key)?.value || '';
 
