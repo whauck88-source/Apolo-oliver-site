@@ -15,6 +15,7 @@ export default function Footer({ artist }: { artist: Artist }) {
     { url: artist.soundcloud_url, label: 'SoundCloud' },
     { url: artist.youtube_url, label: 'YouTube' },
     { url: artist.tiktok_url, label: 'TikTok' },
+    { url: artist.beatport_url, label: 'Beatport' },
   ].filter((s) => s.url);
 
   return (
