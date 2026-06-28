@@ -12,6 +12,7 @@ export interface Artist {
   instagram_url: string | null;
   youtube_url: string | null;
   tiktok_url: string | null;
+  beatport_url?: string | null;
   hero_image_url: string | null;
   created_at: string;
 }
