@@ -1,20 +1,17 @@
 'use client';
 import { Artist } from '@/lib/types';
 import Link from 'next/link';
+import HeroVideo from './HeroVideo';
 
 export default function Hero({ artist, subtitle }: { artist: Artist; subtitle: string }) {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradients */}
-      <div className="absolute inset-0 bg-gradient-to-br from-midnight via-midnight-blue to-midnight" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(30,15,60,0.4),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(184,29,36,0.08),transparent_50%)]" />
-      
-      {/* Animated lines */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blood to-transparent" />
-        <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-blood/50 to-transparent" />
-      </div>
+      {/* Background: hero animado em vídeo (16:9 desktop / 9:16 mobile) */}
+      <div className="absolute inset-0 bg-[#0A0A0C]" />
+      <HeroVideo />
+      {/* Scrim para legibilidade do conteúdo sobre o vídeo */}
+      <div className="absolute inset-0 bg-midnight/45" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-midnight" />
 
       <div className="relative z-10 text-center px-4">
         <p className="font-display text-sm md:text-base tracking-[0.4em] uppercase text-blood mb-6 font-medium">
