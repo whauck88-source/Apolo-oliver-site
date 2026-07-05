@@ -1,60 +1,17 @@
 'use client';
 import { Artist } from '@/lib/types';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-
-const HERO_VIDEO_DESKTOP = { src: '/media/hero-16x9.mp4', poster: '/media/hero-16x9-poster.jpg' };
-const HERO_VIDEO_MOBILE = { src: '/media/hero-9x16.mp4', poster: '/media/hero-9x16-poster.jpg' };
+import HeroVideo from './HeroVideo';
 
 export default function Hero({ artist, subtitle }: { artist: Artist; subtitle: string }) {
-  // null até montar no cliente: evita baixar os dois vídeos e mismatch de hidratação
-  const [isMobile, setIsMobile] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    const mq = window.matchMedia('(max-width: 767px)');
-    setIsMobile(mq.matches);
-    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
-
-  const video = isMobile === null ? null : isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
-
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Fallback: base escura + posters até o vídeo montar */}
-      <div className="absolute inset-0 bg-midnight" />
-      <img
-        src={HERO_VIDEO_DESKTOP.poster}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover hidden md:block"
-      />
-      <img
-        src={HERO_VIDEO_MOBILE.poster}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover md:hidden"
-      />
-
-      {/* Vídeo de fundo: 16x9 no desktop, 9x16 no mobile (<768px) */}
-      {video && (
-        <video
-          key={video.src}
-          className="absolute inset-0 w-full h-full object-cover"
-          src={video.src}
-          poster={video.poster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
-      )}
-
-      {/* Overlay para legibilidade do texto */}
-      <div className="absolute inset-0 bg-gradient-to-b from-midnight/70 via-midnight/40 to-midnight" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(184,29,36,0.08),transparent_50%)]" />
+      {/* Background: hero animado em vídeo (16:9 desktop / 9:16 mobile) */}
+      <div className="absolute inset-0 bg-[#0A0A0C]" />
+      <HeroVideo />
+      {/* Scrim para legibilidade do conteúdo sobre o vídeo */}
+      <div className="absolute inset-0 bg-midnight/45" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-midnight" />
 
       <div className="relative z-10 text-center px-4">
         <p className="font-display text-sm md:text-base tracking-[0.4em] uppercase text-blood mb-6 font-medium">
