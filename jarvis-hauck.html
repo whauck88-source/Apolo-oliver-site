@@ -198,10 +198,195 @@
   .btn.primary{ border-color:var(--theme); color:var(--theme); }
   .btn.danger{ border-color:#ff5547; color:#ff5547; }
 
+  /* ═══════════ PARTE 2 — MÓDULOS ═══════════ */
+  .modules{ width:100%; max-width:1080px; margin:0 auto; padding:0 16px 60px; }
+  .tabs{ display:flex; gap:8px; flex-wrap:wrap; border-bottom:1px solid var(--border); padding-bottom:0; }
+  .tab{
+    background:transparent; border:1px solid var(--border); border-bottom:none;
+    color:var(--muted); padding:10px 16px; border-radius:8px 8px 0 0; cursor:pointer;
+    font-family:'SFMono-Regular','Consolas','Menlo',monospace; font-size:0.75rem;
+    letter-spacing:0.08em; display:flex; align-items:center; gap:7px; transition:color .2s, border-color .2s;
+  }
+  .tab:hover{ color:var(--text); }
+  .tab.active{ color:var(--theme); border-color:var(--theme); background:var(--panel); }
+  .tab-badge{
+    background:var(--theme); color:#04121a; border-radius:10px; padding:1px 7px;
+    font-size:0.65rem; font-weight:700; min-width:18px; text-align:center;
+  }
+  .tab-badge.zero{ display:none; }
+
+  .panel-body{
+    display:none; padding:20px 4px; animation:panel-in .32s ease both;
+  }
+  .panel-body.active{ display:block; }
+  @keyframes panel-in{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;} }
+
+  .panel-head{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+  .panel-head h4{
+    margin:0; font-family:'SFMono-Regular','Consolas',monospace; font-size:0.85rem;
+    letter-spacing:0.12em; color:var(--theme); font-weight:700;
+  }
+  .panel-meta{ font-size:0.7rem; color:var(--muted); flex:1; }
+
+  .warn{
+    border:1px dashed rgba(255,85,71,0.45); background:rgba(255,85,71,0.06);
+    color:#ffb3ac; padding:14px 16px; border-radius:8px; font-size:0.8rem; line-height:1.55;
+  }
+  .warn code{
+    background:rgba(0,0,0,0.35); padding:2px 7px; border-radius:4px;
+    font-family:'SFMono-Regular','Consolas',monospace; color:var(--accent);
+  }
+  .empty{ color:var(--muted); font-size:0.8rem; padding:12px 2px; }
+
+  /* AGENDA */
+  .day-group{ margin-bottom:22px; }
+  .day-label{
+    font-family:'SFMono-Regular','Consolas',monospace; font-size:0.7rem; letter-spacing:0.18em;
+    color:var(--muted); padding-bottom:8px; border-bottom:1px solid var(--border); margin-bottom:10px;
+  }
+  .day-group.today .day-label{ color:var(--accent); }
+  .event{
+    display:flex; align-items:flex-start; gap:12px; padding:11px 14px; border-radius:8px;
+    background:var(--panel); border:1px solid var(--border); border-left-width:3px; margin-bottom:8px;
+  }
+  .event.next{ box-shadow:0 0 18px rgba(0,212,255,0.16); border-color:var(--theme); }
+  .event-time{
+    font-family:'SFMono-Regular','Consolas',monospace; font-size:0.78rem; color:var(--theme);
+    min-width:56px; padding-top:1px;
+  }
+  .event-main{ flex:1; min-width:0; }
+  .event-title{ font-size:0.87rem; }
+  .event-sub{ font-size:0.7rem; color:var(--muted); margin-top:3px; }
+  .countdown{
+    font-family:'SFMono-Regular','Consolas',monospace; font-size:0.7rem; color:var(--accent);
+    border:1px solid rgba(0,255,157,0.35); border-radius:20px; padding:3px 11px; white-space:nowrap;
+  }
+
+  /* E-MAILS */
+  .bucket{ margin-bottom:20px; }
+  .bucket-head{
+    display:flex; align-items:center; gap:9px; cursor:pointer; padding:8px 2px;
+    font-family:'SFMono-Regular','Consolas',monospace; font-size:0.72rem; letter-spacing:0.13em;
+  }
+  .bucket.acao .bucket-head{ color:var(--theme); }
+  .bucket.info .bucket-head{ color:var(--muted); }
+  .bucket.ruido .bucket-head{ color:#5d6b7a; }
+  .bucket-count{ opacity:0.65; }
+  .bucket-list{ display:block; }
+  .bucket.collapsed .bucket-list{ display:none; }
+  .mail{
+    display:flex; align-items:flex-start; gap:11px; padding:11px 14px; border-radius:8px;
+    background:var(--panel); border:1px solid var(--border); margin-bottom:7px; cursor:pointer;
+  }
+  .bucket.acao .mail{ border-left:3px solid var(--theme); }
+  .mail:hover{ border-color:var(--theme); }
+  .mail-dot{ width:8px; height:8px; border-radius:50%; margin-top:6px; flex-shrink:0; }
+  .mail-main{ flex:1; min-width:0; }
+  .mail-from{ font-size:0.78rem; color:var(--text); }
+  .mail-subject{ font-size:0.74rem; color:var(--muted); margin-top:2px; }
+  .mail-summary{ font-size:0.8rem; margin-top:5px; line-height:1.5; }
+  .mail-when{ font-size:0.66rem; color:var(--muted); white-space:nowrap; padding-top:2px; }
+  .mail-excerpt{
+    display:none; margin-top:9px; padding-top:9px; border-top:1px solid var(--border);
+    font-size:0.74rem; color:var(--muted); line-height:1.6; white-space:pre-wrap;
+  }
+  .mail.open .mail-excerpt{ display:block; }
+
+  /* NOTÍCIAS */
+  .topic{ margin-bottom:24px; }
+  .topic-head{
+    font-family:'SFMono-Regular','Consolas',monospace; font-size:0.72rem; letter-spacing:0.14em;
+    color:var(--accent); padding-bottom:8px; border-bottom:1px solid var(--border); margin-bottom:10px;
+    text-transform:uppercase;
+  }
+  .headline{
+    display:block; padding:10px 14px; border-radius:8px; background:var(--panel);
+    border:1px solid var(--border); margin-bottom:7px; text-decoration:none; color:var(--text);
+  }
+  .headline:hover{ border-color:var(--theme); }
+  .headline-title{ font-size:0.84rem; line-height:1.45; }
+  .headline-sub{ font-size:0.67rem; color:var(--muted); margin-top:5px; }
+
+  /* DIGEST */
+  .digest-card{
+    background:linear-gradient(155deg, rgba(0,212,255,0.07), rgba(0,255,157,0.04) 55%, transparent);
+    border:1px solid var(--border); border-radius:12px; padding:24px;
+  }
+  .digest-weather{
+    display:flex; align-items:center; gap:14px; padding-bottom:16px; margin-bottom:16px;
+    border-bottom:1px solid var(--border); flex-wrap:wrap;
+  }
+  .weather-temp{
+    font-family:'SFMono-Regular','Consolas',monospace; font-size:1.9rem; color:var(--theme); font-weight:700;
+  }
+  .weather-desc{ font-size:0.78rem; color:var(--muted); line-height:1.6; }
+  .digest-text{ font-size:0.94rem; line-height:1.75; white-space:pre-wrap; }
+  .digest-date{
+    font-family:'SFMono-Regular','Consolas',monospace; font-size:0.7rem; letter-spacing:0.14em;
+    color:var(--accent); margin-bottom:14px; text-transform:uppercase;
+  }
+
+  /* CONFIGURAÇÕES */
+  .modal-panel.wide{ width:min(620px,94vw); max-height:88vh; overflow-y:auto; }
+  .cfg-section{ border-top:1px solid var(--border); padding-top:16px; margin-top:18px; }
+  .cfg-section:first-of-type{ border-top:none; margin-top:0; padding-top:0; }
+  .cfg-section > h4{
+    margin:0 0 6px; font-family:'SFMono-Regular','Consolas',monospace; font-size:0.78rem;
+    letter-spacing:0.12em; color:var(--theme);
+  }
+  .cfg-help{ font-size:0.7rem; color:var(--muted); line-height:1.65; margin-bottom:12px; }
+  .cfg-help strong{ color:#b9cddb; font-weight:600; }
+  .cfg-note{
+    font-size:0.68rem; color:#8ea6b8; background:rgba(0,212,255,0.05);
+    border-left:2px solid var(--theme); padding:8px 11px; border-radius:0 5px 5px 0;
+    margin-bottom:12px; line-height:1.6;
+  }
+  .cfg-row{
+    display:flex; gap:8px; align-items:center; margin-bottom:8px; flex-wrap:wrap;
+    background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:10px;
+  }
+  .cfg-row input[type=text], .cfg-row input[type=password]{
+    flex:1; min-width:150px; background:var(--panel2); border:1px solid var(--border);
+    color:var(--text); padding:8px 10px; border-radius:6px; font-size:0.78rem;
+  }
+  .cfg-row input[type=color]{
+    width:34px; height:34px; padding:0; border:1px solid var(--border);
+    border-radius:6px; background:var(--panel2); cursor:pointer;
+  }
+  .cfg-row .rm{
+    background:transparent; border:1px solid rgba(255,85,71,0.4); color:#ff5547;
+    border-radius:6px; width:30px; height:30px; cursor:pointer; font-size:0.85rem;
+  }
+  .cfg-add{
+    background:transparent; border:1px dashed var(--border); color:var(--theme);
+    padding:8px 14px; border-radius:6px; cursor:pointer; font-size:0.75rem; width:100%;
+  }
+  .cfg-add:hover{ border-color:var(--theme); }
+  .cfg-line{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
+  .cfg-line label{ margin:0; font-size:0.72rem; color:var(--muted); }
+  .cfg-line select, .cfg-line input[type=text]{
+    background:var(--panel); border:1px solid var(--border); color:var(--text);
+    padding:8px 11px; border-radius:6px; font-size:0.78rem; flex:1; min-width:160px;
+  }
+  .switch{ display:flex; align-items:center; gap:9px; font-size:0.76rem; color:var(--text); cursor:pointer; }
+  .switch input{ width:16px; height:16px; accent-color:var(--theme); cursor:pointer; }
+
+  #settingsBtn{ font-size:1rem; }
+  #hudBadge{
+    background:var(--theme); color:#04121a; border-radius:11px; padding:2px 9px;
+    font-size:0.66rem; font-weight:700; font-family:'SFMono-Regular','Consolas',monospace;
+    white-space:nowrap;
+  }
+  #hudBadge.zero{ display:none; }
+  .antenna-dot{ font-size:0.62rem; color:var(--muted); white-space:nowrap; letter-spacing:0.05em; }
+  .antenna-dot.on{ color:var(--accent); }
+
   @media (max-width:560px){
     #apiKeyInput{ width:100%; }
     .topbar{ flex-direction:column; align-items:stretch; }
     .orb{ width:140px; height:140px; }
+    .tab{ flex:1; justify-content:center; padding:10px 8px; font-size:0.68rem; }
+    .digest-card{ padding:16px; }
   }
 </style>
 </head>
@@ -226,6 +411,9 @@
       <div class="topbar-right">
         <input id="apiKeyInput" type="password" placeholder="Cole sua API key da Anthropic...">
         <span id="keyStatus" class="key-status mono"></span>
+        <span id="hudBadge" class="zero"></span>
+        <span id="antennaDot" class="antenna-dot mono">○ antena</span>
+        <button id="settingsBtn" class="ctrl-btn" style="width:34px;height:34px;" title="Configurações">⚙</button>
       </div>
     </header>
 
@@ -262,6 +450,147 @@
       <div id="graphContainer" class="graph-container"></div>
       <div id="sbLegend" class="sb-legend"></div>
     </section>
+
+    <section class="modules">
+      <div class="tabs">
+        <button class="tab active" data-tab="agenda">📅 AGENDA</button>
+        <button class="tab" data-tab="emails">📧 E-MAILS <span id="tabMailBadge" class="tab-badge zero"></span></button>
+        <button class="tab" data-tab="news">📰 NOTÍCIAS</button>
+        <button class="tab" data-tab="digest">☀️ DIGEST</button>
+      </div>
+
+      <div id="tab-agenda" class="panel-body active">
+        <div class="panel-head">
+          <h4>TIMELINE</h4>
+          <span id="agendaMeta" class="panel-meta"></span>
+          <button id="agendaRefresh" class="sb-btn" title="Atualizar">⟳</button>
+        </div>
+        <div id="agendaBody"></div>
+      </div>
+
+      <div id="tab-emails" class="panel-body">
+        <div class="panel-head">
+          <h4>CAIXA DE ENTRADA</h4>
+          <span id="emailsMeta" class="panel-meta"></span>
+          <button id="emailsRefresh" class="sb-btn" title="Atualizar">⟳</button>
+        </div>
+        <div id="emailsBody"></div>
+      </div>
+
+      <div id="tab-news" class="panel-body">
+        <div class="panel-head">
+          <h4>RADAR</h4>
+          <span id="newsMeta" class="panel-meta"></span>
+          <button id="newsRefresh" class="sb-btn" title="Atualizar">⟳</button>
+        </div>
+        <div id="newsBody"></div>
+      </div>
+
+      <div id="tab-digest" class="panel-body">
+        <div class="panel-head">
+          <h4>MORNING DIGEST</h4>
+          <span id="digestMeta" class="panel-meta"></span>
+          <button id="digestRun" class="btn primary" style="font-size:0.72rem;">▶ GERAR DIGEST</button>
+        </div>
+        <div id="digestBody"></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="settingsModal" class="modal hidden">
+    <div class="modal-panel wide">
+      <h3>⚙ CONFIGURAÇÕES DO HAUCK</h3>
+
+      <div class="cfg-section">
+        <h4>📅 AGENDAS</h4>
+        <div class="cfg-help">
+          Onde pegar o link: <strong>Google Agenda no computador</strong> → ⚙ Configurações →
+          clique na agenda na lista à esquerda → <strong>"Integrar agenda"</strong> →
+          copie o <strong>"Endereço secreto em formato iCal"</strong>.
+        </div>
+        <div class="cfg-note">
+          Este link dá acesso de leitura à sua agenda. Ele fica salvo só no seu navegador
+          e nunca é enviado para a IA.
+        </div>
+        <div id="cfgCalendars"></div>
+        <button id="cfgAddCalendar" class="cfg-add">+ adicionar agenda</button>
+      </div>
+
+      <div class="cfg-section">
+        <h4>📧 CONTAS DE E-MAIL</h4>
+        <div class="cfg-help">
+          Ordem importa: <strong>(a)</strong> ative a verificação em 2 etapas em
+          <strong>myaccount.google.com/security</strong> — sem ela o campo de senha de app nem aparece.
+          <strong>(b)</strong> vá em <strong>myaccount.google.com/apppasswords</strong>, crie um app
+          chamado "Jarvis" e copie a senha de 16 letras. <strong>(c)</strong> cole aqui.
+          Não é a sua senha normal do Gmail.
+        </div>
+        <div class="cfg-note">
+          Sua senha de app fica salva só no seu navegador e viaja apenas até a antena local e o seu
+          provedor. Para a triagem, remetente, assunto e um trecho do e-mail são enviados à API da
+          Anthropic. O Hauck só LÊ: nunca envia, responde, apaga ou marca nada.
+        </div>
+        <div id="cfgEmails"></div>
+        <button id="cfgAddEmail" class="cfg-add">+ adicionar conta</button>
+        <div class="cfg-line" style="margin-top:12px;">
+          <label>E-mails por conta</label>
+          <input id="cfgMailCount" type="text" style="max-width:80px;flex:none;">
+          <label>Atualizar a cada (min)</label>
+          <input id="cfgMailInterval" type="text" style="max-width:80px;flex:none;">
+        </div>
+      </div>
+
+      <div class="cfg-section">
+        <h4>📰 RADAR DE NOTÍCIAS</h4>
+        <div class="cfg-help">Um assunto por linha. De 2 a 5 funciona melhor.</div>
+        <textarea id="cfgTopics" style="min-height:74px;"></textarea>
+        <div class="cfg-line" style="margin-top:10px;">
+          <label>Manchetes por assunto</label>
+          <input id="cfgNewsCount" type="text" style="max-width:80px;flex:none;">
+          <label>Atualizar a cada (min)</label>
+          <input id="cfgNewsInterval" type="text" style="max-width:80px;flex:none;">
+        </div>
+      </div>
+
+      <div class="cfg-section">
+        <h4>☀️ DIGEST & CLIMA</h4>
+        <div class="cfg-line">
+          <label>Cidade</label>
+          <input id="cfgCity" type="text">
+        </div>
+        <div class="cfg-line">
+          <label>Tamanho</label>
+          <select id="cfgDigestSize">
+            <option value="curto">CURTO (~30s)</option>
+            <option value="medio">MÉDIO (~1min)</option>
+          </select>
+        </div>
+        <label class="switch"><input id="cfgDigestSpeak" type="checkbox"> Ler o digest em voz alta</label>
+        <label class="switch" style="margin-top:8px;"><input id="cfgDigestAuto" type="checkbox"> Disparar automático na 1ª ativação do dia</label>
+        <label class="switch" style="margin-top:8px;"><input id="cfgWeather" type="checkbox"> Incluir previsão do tempo</label>
+      </div>
+
+      <div class="cfg-section">
+        <h4>⚙️ MOTOR</h4>
+        <div class="cfg-line">
+          <label>Cérebro</label>
+          <select id="cfgModel">
+            <option value="economico">ECONÔMICO · Haiku 4.5</option>
+            <option value="equilibrado">EQUILIBRADO · Sonnet 5</option>
+            <option value="maximo">MÁXIMO · Opus 5</option>
+          </select>
+        </div>
+        <label class="switch"><input id="cfgEconomy" type="checkbox"> Modo economia (comandos locais sem gastar API, triagem em lote com cache, digest 1x/dia)</label>
+      </div>
+
+      <div class="modal-actions">
+        <span></span>
+        <div class="right">
+          <button id="cfgCancel" class="btn">Cancelar</button>
+          <button id="cfgSave" class="btn primary">Salvar</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="noteEditor" class="modal hidden">
@@ -948,6 +1277,1320 @@
     assistantLineEl.textContent = CONFIG.name + ': ' + greeting;
     speak(greeting);
   });
+
+  /* ═══════════════════════════════════════════════════════════════
+     PARTE 2 — AGENDA · E-MAILS · NOTÍCIAS · MORNING DIGEST
+     Nada da Parte 1 foi removido. Tudo aqui é adição e envelopamento.
+     ═══════════════════════════════════════════════════════════════ */
+
+  var ANTENNA = 'http://127.0.0.1:4242';
+  var TZ = 'America/Sao_Paulo';
+
+  var MODELS = {
+    economico:   { id:'claude-haiku-4-5-20251001', label:'ECONÔMICO · Haiku 4.5' },
+    equilibrado: { id:'claude-sonnet-5',           label:'EQUILIBRADO · Sonnet 5' },
+    maximo:      { id:'claude-opus-5',             label:'MÁXIMO · Opus 5' }
+  };
+
+  var DEF_CALENDARS = [
+    { id:'cal1', nome:'whauck88@gmail.com', cor:'#00d4ff', url:'' },
+    { id:'cal2', nome:'will@hauckco.ai',    cor:'#00ff9d', url:'' }
+  ];
+  var DEF_MAILBOXES = [
+    { id:'box1', apelido:'whauck88@gmail.com', cor:'#00d4ff',
+      host:'imap.gmail.com', usuario:'whauck88@gmail.com', senhaApp:'' }
+  ];
+  var DEF_SETTINGS = {
+    topics:['inteligência artificial','tecnologia'],
+    newsCount:5, newsInterval:30,
+    mailCount:20, mailInterval:15,
+    city:'Uberlândia', weather:true,
+    digestSize:'curto', digestSpeak:true, digestAuto:true,
+    model:'maximo', economy:true
+  };
+
+  var calendars, mailboxes, settings, triageCache, newsCache, geoCache;
+  var calEvents = [], calErrors = [];
+  var mailItems = [], mailErrors = [];
+  var newsData = {};
+  var antennaOnline = false;
+  var lastDigestText = '', lastWeather = null;
+  var agendaLoading = false, mailLoading = false, newsLoading = false;
+
+  function lsGet(chave, padrao){
+    try{
+      var raw = localStorage.getItem(chave);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    return JSON.parse(JSON.stringify(padrao));
+  }
+  function lsSet(chave, valor){
+    try{ localStorage.setItem(chave, JSON.stringify(valor)); }catch(e){}
+  }
+
+  /* ─────────── FUSO HORÁRIO (Intl nativo, sem biblioteca) ─────────── */
+
+  function tzOffset(ms, tz){
+    try{
+      var f = new Intl.DateTimeFormat('en-US', { timeZone:tz, hour12:false,
+        year:'numeric', month:'2-digit', day:'2-digit',
+        hour:'2-digit', minute:'2-digit', second:'2-digit' });
+      var p = {};
+      f.formatToParts(new Date(ms)).forEach(function(x){ p[x.type] = x.value; });
+      var asUTC = Date.UTC(+p.year, +p.month - 1, +p.day, (+p.hour) % 24, +p.minute, +p.second);
+      return asUTC - ms;
+    }catch(e){ return 0; }
+  }
+  function wallToUtc(y, mo, d, h, mi, s, tz){
+    var guess = Date.UTC(y, mo, d, h, mi, s);
+    var r = guess - tzOffset(guess, tz);
+    return guess - tzOffset(r, tz);
+  }
+  function wallParts(ms, tz){
+    try{
+      var f = new Intl.DateTimeFormat('en-US', { timeZone:tz, hour12:false,
+        year:'numeric', month:'2-digit', day:'2-digit',
+        hour:'2-digit', minute:'2-digit', second:'2-digit' });
+      var p = {};
+      f.formatToParts(new Date(ms)).forEach(function(x){ p[x.type] = x.value; });
+      return { y:+p.year, mo:+p.month - 1, d:+p.day, h:(+p.hour) % 24, mi:+p.minute, s:+p.second };
+    }catch(e){
+      var dt = new Date(ms);
+      return { y:dt.getFullYear(), mo:dt.getMonth(), d:dt.getDate(),
+               h:dt.getHours(), mi:dt.getMinutes(), s:dt.getSeconds() };
+    }
+  }
+  function startOfDay(ms){
+    var p = wallParts(ms, TZ);
+    return wallToUtc(p.y, p.mo, p.d, 0, 0, 0, TZ);
+  }
+  function dayKey(ms){
+    var p = wallParts(ms, TZ);
+    return p.y + '-' + p.mo + '-' + p.d;
+  }
+  function hhmm(ms){
+    var p = wallParts(ms, TZ);
+    return ('0' + p.h).slice(-2) + ':' + ('0' + p.mi).slice(-2);
+  }
+  var DIAS = ['DOMINGO','SEGUNDA','TERÇA','QUARTA','QUINTA','SEXTA','SÁBADO'];
+  var DIAS_FALA = ['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+  function rotuloDia(ms, hojeMs){
+    var diff = Math.round((startOfDay(ms) - startOfDay(hojeMs)) / 86400000);
+    var p = wallParts(ms, TZ);
+    var dataStr = ('0' + p.d).slice(-2) + '/' + ('0' + (p.mo + 1)).slice(-2);
+    if(diff === 0) return 'HOJE · ' + dataStr;
+    if(diff === 1) return 'AMANHÃ · ' + dataStr;
+    var dow = new Date(Date.UTC(p.y, p.mo, p.d)).getUTCDay();
+    return DIAS[dow] + ' · ' + dataStr;
+  }
+  function tempoRelativo(ms){
+    var diff = Date.now() - ms;
+    if(diff < 0) diff = 0;
+    var min = Math.floor(diff / 60000);
+    if(min < 1) return 'agora';
+    if(min < 60) return 'há ' + min + ' min';
+    var h = Math.floor(min / 60);
+    if(h < 24) return 'há ' + h + ' h';
+    return 'há ' + Math.floor(h / 24) + ' d';
+  }
+  function faltaPara(ms){
+    var diff = ms - Date.now();
+    if(diff <= 0) return 'agora';
+    var min = Math.round(diff / 60000);
+    if(min < 60) return 'em ' + min + ' min';
+    var h = Math.floor(min / 60), m = min % 60;
+    if(h < 24) return 'em ' + h + 'h' + (m ? ' ' + m + 'min' : '');
+    return 'em ' + Math.floor(h / 24) + ' dias';
+  }
+
+  /* ─────────── ANTENA ─────────── */
+
+  function checarAntena(){
+    return fetch(ANTENNA + '/status')
+      .then(function(r){ return r.ok; })
+      .catch(function(){ return false; })
+      .then(function(ok){
+        antennaOnline = ok;
+        var dot = document.getElementById('antennaDot');
+        if(dot){
+          dot.textContent = ok ? '● antena' : '○ antena';
+          dot.className = 'antenna-dot mono' + (ok ? ' on' : '');
+        }
+        return ok;
+      });
+  }
+  function viaAntena(url){
+    return fetch(ANTENNA + '/proxy?url=' + encodeURIComponent(url)).then(function(r){
+      if(!r.ok){
+        return r.json().catch(function(){ return {}; }).then(function(j){
+          throw new Error(j.erro || ('HTTP ' + r.status));
+        });
+      }
+      return r.text();
+    });
+  }
+  function avisoAntena(){
+    return '<div class="warn"><strong>ANTENA OFFLINE.</strong><br>' +
+      'Abra um terminal nesta pasta e rode: <code>node server.js</code><br>' +
+      'Deixe esse terminal aberto — é a antena que busca agenda, e-mails e notícias. ' +
+      'O resto do Hauck (voz, chat, Second Brain) continua funcionando normal.</div>';
+  }
+
+  /* ─────────── PARSER ICS ─────────── */
+
+  function icsUnfold(t){
+    return String(t).replace(/\r\n/g, '\n').replace(/\r/g, '\n').replace(/\n[ \t]/g, '');
+  }
+  function icsUnescape(v){
+    return String(v).replace(/\\n/gi, ' ').replace(/\\,/g, ',')
+                    .replace(/\\;/g, ';').replace(/\\\\/g, '\\').trim();
+  }
+  function parseIcsDate(val, params){
+    val = String(val).trim();
+    if((params && params.VALUE === 'DATE') || /^\d{8}$/.test(val)){
+      var y = +val.slice(0,4), mo = +val.slice(4,6) - 1, d = +val.slice(6,8);
+      return { allDay:true, ms: wallToUtc(y, mo, d, 0, 0, 0, TZ) };
+    }
+    var m = val.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(Z)?$/);
+    if(!m) return null;
+    var Y = +m[1], MO = +m[2] - 1, D = +m[3], H = +m[4], MI = +m[5], S = +m[6];
+    if(m[7] === 'Z') return { allDay:false, ms: Date.UTC(Y, MO, D, H, MI, S) };
+    var tz = (params && params.TZID) ? params.TZID.replace(/^["']|["']$/g, '') : TZ;
+    var ok = true;
+    try{ new Intl.DateTimeFormat('en-US', { timeZone: tz }); }catch(e){ ok = false; }
+    return { allDay:false, ms: wallToUtc(Y, MO, D, H, MI, S, ok ? tz : TZ) };
+  }
+
+  function parseICS(texto){
+    var eventos = [];
+    var linhas = icsUnfold(texto).split('\n');
+    var cur = null;
+    for(var i = 0; i < linhas.length; i++){
+      var linha = linhas[i];
+      if(linha.indexOf('BEGIN:VEVENT') === 0){ cur = { exdates:[] }; continue; }
+      if(linha.indexOf('END:VEVENT') === 0){
+        if(cur && cur.start) eventos.push(cur);
+        cur = null; continue;
+      }
+      if(!cur) continue;
+      var ci = linha.indexOf(':');
+      if(ci < 0) continue;
+      var esq = linha.slice(0, ci), val = linha.slice(ci + 1);
+      var semi = esq.indexOf(';');
+      var nome = (semi < 0 ? esq : esq.slice(0, semi)).toUpperCase();
+      var params = {};
+      if(semi >= 0){
+        esq.slice(semi + 1).split(';').forEach(function(p){
+          var e = p.indexOf('=');
+          if(e > 0) params[p.slice(0, e).toUpperCase()] = p.slice(e + 1);
+        });
+      }
+      if(nome === 'SUMMARY')      cur.titulo = icsUnescape(val);
+      else if(nome === 'LOCATION') cur.local = icsUnescape(val);
+      else if(nome === 'DTSTART')  cur.start = parseIcsDate(val, params);
+      else if(nome === 'DTEND')    cur.end = parseIcsDate(val, params);
+      else if(nome === 'RRULE')    cur.rrule = val;
+      else if(nome === 'EXDATE'){
+        val.split(',').forEach(function(v){
+          var d = parseIcsDate(v, params);
+          if(d) cur.exdates.push(startOfDay(d.ms) + '|' + hhmm(d.ms));
+        });
+      }
+      else if(nome === 'STATUS' && /CANCELLED/i.test(val)) cur.cancelado = true;
+    }
+    return eventos.filter(function(e){ return !e.cancelado && e.start; });
+  }
+
+  var BYDAY_MAP = { SU:0, MO:1, TU:2, WE:3, TH:4, FR:5, SA:6 };
+
+  function expandirRRule(ev, janIni, janFim){
+    var base = ev.start.ms;
+    if(!ev.rrule){
+      return (base >= janIni && base < janFim) ? [base] : [];
+    }
+    var regra = {};
+    ev.rrule.split(';').forEach(function(p){
+      var e = p.indexOf('=');
+      if(e > 0) regra[p.slice(0, e).toUpperCase()] = p.slice(e + 1);
+    });
+    var freq = (regra.FREQ || '').toUpperCase();
+    var intervalo = parseInt(regra.INTERVAL || '1', 10) || 1;
+    var count = regra.COUNT ? parseInt(regra.COUNT, 10) : null;
+    var until = null;
+    if(regra.UNTIL){
+      var u = parseIcsDate(regra.UNTIL, {});
+      if(u) until = u.ms;
+    }
+    var byday = regra.BYDAY ? regra.BYDAY.split(',').map(function(x){
+      return BYDAY_MAP[x.replace(/^[-+]?\d+/, '').toUpperCase()];
+    }).filter(function(x){ return x !== undefined; }) : null;
+
+    var p0 = wallParts(base, TZ);
+    var ocorrencias = [];
+    var gerados = 0;
+    var guarda = 0;
+
+    function empurrar(ms){
+      if(until !== null && ms > until) return false;
+      gerados++;
+      if(count !== null && gerados > count) return false;
+      if(ms >= janIni && ms < janFim) ocorrencias.push(ms);
+      return true;
+    }
+
+    if(freq === 'WEEKLY' && byday && byday.length){
+      var semana = wallToUtc(p0.y, p0.mo, p0.d, p0.h, p0.mi, p0.s, TZ);
+      var dowBase = new Date(Date.UTC(p0.y, p0.mo, p0.d)).getUTCDay();
+      var domingo = startOfDay(semana) - dowBase * 86400000;
+      while(guarda++ < 800){
+        var passouTudo = true;
+        for(var k = 0; k < byday.length; k++){
+          var alvo = domingo + byday[k] * 86400000;
+          var pa = wallParts(alvo, TZ);
+          var ms = wallToUtc(pa.y, pa.mo, pa.d, p0.h, p0.mi, p0.s, TZ);
+          if(ms < base) continue;
+          if(!empurrar(ms)) return ocorrencias;
+          if(ms < janFim) passouTudo = false;
+        }
+        domingo += intervalo * 7 * 86400000;
+        if(domingo > janFim + 86400000 * 8) break;
+        if(passouTudo && domingo > janFim) break;
+      }
+      return ocorrencias;
+    }
+
+    var y = p0.y, mo = p0.mo, d = p0.d;
+    while(guarda++ < 800){
+      var atual = wallToUtc(y, mo, d, p0.h, p0.mi, p0.s, TZ);
+      if(atual > janFim) break;
+      if(!empurrar(atual)) break;
+      if(freq === 'DAILY')        d += intervalo;
+      else if(freq === 'WEEKLY')  d += intervalo * 7;
+      else if(freq === 'MONTHLY') mo += intervalo;
+      else if(freq === 'YEARLY')  y += intervalo;
+      else break;
+      var norm = new Date(Date.UTC(y, mo, d));
+      y = norm.getUTCFullYear(); mo = norm.getUTCMonth(); d = norm.getUTCDate();
+    }
+    return ocorrencias;
+  }
+
+  /* ─────────── MÓDULO AGENDA ─────────── */
+
+  function carregarAgenda(){
+    var body = document.getElementById('agendaBody');
+    var meta = document.getElementById('agendaMeta');
+    if(agendaLoading) return Promise.resolve();
+
+    var comLink = calendars.filter(function(c){ return (c.url || '').trim(); });
+    if(!comLink.length){
+      body.innerHTML = '<div class="empty">Nenhuma agenda configurada ainda. Clique em ⚙ e cole o ' +
+        '"Endereço secreto em formato iCal" de cada agenda.</div>';
+      meta.textContent = '';
+      return Promise.resolve();
+    }
+
+    agendaLoading = true;
+    meta.textContent = 'buscando...';
+
+    return checarAntena().then(function(ok){
+      if(!ok){
+        body.innerHTML = avisoAntena();
+        meta.textContent = 'antena offline';
+        agendaLoading = false;
+        return;
+      }
+      calErrors = [];
+      return Promise.all(comLink.map(function(cal){
+        return viaAntena(cal.url)
+          .then(function(txt){ return { cal:cal, eventos:parseICS(txt) }; })
+          .catch(function(e){
+            calErrors.push({ nome:cal.nome, erro:e.message });
+            return { cal:cal, eventos:[] };
+          });
+      })).then(function(resultados){
+        var agora = Date.now();
+        var janIni = startOfDay(agora);
+        var janFim = janIni + 8 * 86400000;
+        var lista = [];
+
+        resultados.forEach(function(r){
+          r.eventos.forEach(function(ev){
+            var dur = (ev.end && ev.start) ? (ev.end.ms - ev.start.ms) : 0;
+            var ocorr;
+            try{ ocorr = expandirRRule(ev, janIni, janFim); }
+            catch(e){ ocorr = []; }
+            ocorr.forEach(function(ms){
+              var chave = startOfDay(ms) + '|' + hhmm(ms);
+              if(ev.exdates.indexOf(chave) !== -1) return;
+              lista.push({
+                ms: ms,
+                fim: ms + dur,
+                titulo: ev.titulo || '(sem título)',
+                local: ev.local || '',
+                allDay: !!ev.start.allDay,
+                cor: r.cal.cor,
+                agenda: r.cal.nome
+              });
+            });
+          });
+        });
+
+        lista.sort(function(a, b){ return a.ms - b.ms; });
+        calEvents = lista;
+        lsSet('jarvis_cal_cache', { quando:Date.now(), eventos:lista });
+        agendaLoading = false;
+        renderAgenda();
+      });
+    }).catch(function(){
+      agendaLoading = false;
+      body.innerHTML = '<div class="warn">Não consegui carregar a agenda agora.</div>';
+    });
+  }
+
+  function renderAgenda(){
+    var body = document.getElementById('agendaBody');
+    var meta = document.getElementById('agendaMeta');
+    if(!body) return;
+
+    var agora = Date.now();
+    var visiveis = calEvents.filter(function(e){ return e.fim >= agora || dayKey(e.ms) === dayKey(agora); });
+    var proximo = calEvents.filter(function(e){ return e.ms > agora && !e.allDay; })[0];
+
+    var html = '';
+    if(calErrors.length){
+      html += '<div class="warn" style="margin-bottom:14px;">' +
+        calErrors.map(function(x){ return '⚠ <strong>' + escapeXml(x.nome) + '</strong>: ' + escapeXml(x.erro); }).join('<br>') +
+        '</div>';
+    }
+
+    if(!visiveis.length){
+      html += '<div class="empty">Nada nos próximos 7 dias. Agenda limpa.</div>';
+    } else {
+      var grupos = {}, ordem = [];
+      visiveis.forEach(function(e){
+        var k = dayKey(e.ms);
+        if(!grupos[k]){ grupos[k] = []; ordem.push(k); }
+        grupos[k].push(e);
+      });
+      ordem.forEach(function(k){
+        var evs = grupos[k];
+        var ehHoje = (k === dayKey(agora));
+        html += '<div class="day-group' + (ehHoje ? ' today' : '') + '">' +
+                '<div class="day-label">' + escapeXml(rotuloDia(evs[0].ms, agora)) + '</div>';
+        evs.forEach(function(e){
+          var ehProx = proximo && e === proximo;
+          html += '<div class="event' + (ehProx ? ' next' : '') + '" style="border-left-color:' + e.cor + '">' +
+            '<div class="event-time mono">' + (e.allDay ? 'DIA<br>TODO' : escapeXml(hhmm(e.ms))) + '</div>' +
+            '<div class="event-main">' +
+              '<div class="event-title">' + escapeXml(e.titulo) + '</div>' +
+              '<div class="event-sub">' + escapeXml(e.agenda) +
+                (e.local ? ' · ' + escapeXml(e.local) : '') + '</div>' +
+            '</div>' +
+            (ehProx ? '<div class="countdown mono">' + escapeXml(faltaPara(e.ms)) + '</div>' : '') +
+          '</div>';
+        });
+        html += '</div>';
+      });
+    }
+    body.innerHTML = html;
+    var hoje = eventosDeHoje();
+    meta.textContent = hoje.length + ' hoje · ' + visiveis.length + ' em 7 dias';
+  }
+
+  function eventosDeHoje(){
+    var hk = dayKey(Date.now());
+    return calEvents.filter(function(e){ return dayKey(e.ms) === hk; });
+  }
+  function agendaCompacta(){
+    var hoje = eventosDeHoje();
+    if(!hoje.length) return 'Agenda de hoje: nada marcado.';
+    return 'Agenda de hoje: ' + hoje.slice(0, 15).map(function(e){
+      return (e.allDay ? 'dia todo' : hhmm(e.ms)) + ' ' + e.titulo;
+    }).join(' · ');
+  }
+
+  /* ─────────── MÓDULO E-MAILS ─────────── */
+
+  function triagemHeuristica(itens){
+    return itens.map(function(m){
+      var t = normalize((m.remetente || '') + ' ' + (m.assunto || '') + ' ' + (m.trecho || ''));
+      var balde = 'info';
+      if(/noreply|no-reply|newsletter|unsubscribe|descadastr|promo|oferta|desconto|black friday|marketing|notifica/.test(t)){
+        balde = 'ruido';
+      } else if(/\?|prazo|urgente|fatura|boleto|vencimento|reuni|por favor|aguardo|confirmar|assinar|pendente|responda/.test(t)){
+        balde = 'acao';
+      }
+      return { id:m.id, balde:balde, resumo:(m.assunto || '').slice(0, 110) };
+    });
+  }
+
+  function chamarClaude(system, messages, maxTokens){
+    var key = (localStorage.getItem('anthropic_key') || '').trim();
+    if(!key) return Promise.reject(new Error('sem-chave'));
+    return fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{
+        'x-api-key': key,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true',
+        'content-type':'application/json'
+      },
+      body: JSON.stringify({ model:CONFIG.model, max_tokens:maxTokens, system:system, messages:messages })
+    }).then(function(r){
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).then(function(d){
+      return (d.content && d.content[0] && d.content[0].text) || '';
+    });
+  }
+
+  function extrairArrayJson(txt){
+    var i = txt.indexOf('['), f = txt.lastIndexOf(']');
+    if(i < 0 || f < 0) return null;
+    try{ return JSON.parse(txt.slice(i, f + 1)); }catch(e){ return null; }
+  }
+
+  /* UMA chamada por lote. E-mail já triado nunca volta para a API. */
+  function triarLote(novos){
+    if(!novos.length) return Promise.resolve('cache');
+    var lista = novos.map(function(m, i){
+      return (i + 1) + ') id=' + m.id +
+             ' | de: ' + (m.remetente || '').slice(0, 90) +
+             ' | assunto: ' + (m.assunto || '').slice(0, 120) +
+             ' | trecho: ' + (m.trecho || '').slice(0, 200);
+    }).join('\n');
+
+    var system = 'Você tria e-mails em 3 baldes e responde APENAS com JSON, sem markdown, sem comentários.\n' +
+      'Baldes:\n' +
+      '- "acao": pede resposta, tarefa, decisão ou tem prazo. Alguém está esperando o usuário.\n' +
+      '- "info": vale saber, mas não exige nada. Confirmação, recibo, atualização.\n' +
+      '- "ruido": promoção, newsletter, notificação automática. Pode ignorar.\n' +
+      'Formato exato da resposta: [{"id":"...","balde":"acao|info|ruido","resumo":"uma frase curta em português"}]\n' +
+      'Devolva um objeto para CADA e-mail recebido, usando o id exatamente como veio.';
+
+    return chamarClaude(system, [{ role:'user', content:'Trie estes e-mails:\n\n' + lista }], 1500)
+      .then(function(txt){
+        var arr = extrairArrayJson(txt);
+        if(!arr) throw new Error('resposta-invalida');
+        arr.forEach(function(o){
+          if(!o || !o.id) return;
+          var balde = ['acao','info','ruido'].indexOf(o.balde) >= 0 ? o.balde : 'info';
+          triageCache[o.id] = { balde:balde, resumo:String(o.resumo || '').slice(0, 200), ia:true };
+        });
+        novos.forEach(function(m){
+          if(!triageCache[m.id]) triageCache[m.id] = { balde:'info', resumo:(m.assunto || ''), ia:true };
+        });
+        lsSet('jarvis_email_triage', triageCache);
+        return 'ia';
+      })
+      .catch(function(){
+        triagemHeuristica(novos).forEach(function(o){
+          triageCache[o.id] = { balde:o.balde, resumo:o.resumo, ia:false };
+        });
+        lsSet('jarvis_email_triage', triageCache);
+        return 'local';
+      });
+  }
+
+  function carregarEmails(){
+    var body = document.getElementById('emailsBody');
+    var meta = document.getElementById('emailsMeta');
+    if(mailLoading) return Promise.resolve();
+
+    var contas = mailboxes.filter(function(m){ return (m.senhaApp || '').trim() && (m.usuario || '').trim(); });
+    if(!contas.length){
+      body.innerHTML = '<div class="empty">Nenhuma conta configurada. Clique em ⚙ e cole e-mail + senha de app.</div>';
+      meta.textContent = '';
+      return Promise.resolve();
+    }
+
+    mailLoading = true;
+    meta.textContent = 'buscando...';
+
+    return checarAntena().then(function(ok){
+      if(!ok){
+        body.innerHTML = avisoAntena();
+        meta.textContent = 'antena offline';
+        mailLoading = false;
+        return;
+      }
+      mailErrors = [];
+      return Promise.all(contas.map(function(conta){
+        return fetch(ANTENNA + '/emails', {
+          method:'POST',
+          headers:{ 'content-type':'application/json' },
+          body: JSON.stringify({
+            host: conta.host, usuario: conta.usuario,
+            senhaApp: conta.senhaApp, quantidade: settings.mailCount
+          })
+        }).then(function(r){
+          return r.json().then(function(j){
+            if(!r.ok) throw new Error(j.erro || ('HTTP ' + r.status));
+            return j;
+          });
+        }).then(function(j){
+          return (j.emails || []).map(function(m){
+            m.conta = conta.apelido; m.cor = conta.cor;
+            return m;
+          });
+        }).catch(function(e){
+          mailErrors.push({ nome:conta.apelido, erro:e.message });
+          return [];
+        });
+      })).then(function(lotes){
+        var todos = [];
+        lotes.forEach(function(l){ todos = todos.concat(l); });
+        todos.forEach(function(m){ m.quandoMs = Date.parse(m.data) || Date.now(); });
+        todos.sort(function(a, b){ return b.quandoMs - a.quandoMs; });
+        mailItems = todos;
+
+        var novos = todos.filter(function(m){ return !triageCache[m.id]; });
+        return triarLote(novos).then(function(origem){
+          mailLoading = false;
+          renderEmails(origem);
+          lsSet('jarvis_mail_cache', { quando:Date.now(), itens:todos });
+        });
+      });
+    }).catch(function(){
+      mailLoading = false;
+      body.innerHTML = '<div class="warn">Não consegui buscar os e-mails agora.</div>';
+    });
+  }
+
+  function contarAcao(){
+    return mailItems.filter(function(m){
+      var t = triageCache[m.id];
+      return t && t.balde === 'acao';
+    }).length;
+  }
+
+  function renderEmails(origem){
+    var body = document.getElementById('emailsBody');
+    var meta = document.getElementById('emailsMeta');
+    if(!body) return;
+
+    var baldes = { acao:[], info:[], ruido:[] };
+    mailItems.forEach(function(m){
+      var t = triageCache[m.id] || { balde:'info', resumo:m.assunto };
+      (baldes[t.balde] || baldes.info).push({ m:m, t:t });
+    });
+
+    var html = '';
+    if(mailErrors.length){
+      html += '<div class="warn" style="margin-bottom:14px;">' +
+        mailErrors.map(function(x){ return '⚠ <strong>' + escapeXml(x.nome) + '</strong>: ' + escapeXml(x.erro); }).join('<br>') +
+        '</div>';
+    }
+
+    var defs = [
+      { k:'acao',  rot:'⚡ AÇÃO',  col:false },
+      { k:'info',  rot:'INFO',    col:false },
+      { k:'ruido', rot:'RUÍDO',   col:true  }
+    ];
+    defs.forEach(function(def){
+      var itens = baldes[def.k];
+      html += '<div class="bucket ' + def.k + (def.col ? ' collapsed' : '') + '" data-bucket="' + def.k + '">' +
+        '<div class="bucket-head mono">' + def.rot +
+        ' <span class="bucket-count">(' + itens.length + ')</span>' +
+        (def.col ? ' <span style="opacity:.5">▾</span>' : '') + '</div>' +
+        '<div class="bucket-list">';
+      if(!itens.length){
+        html += '<div class="empty">' + (def.k === 'acao' ? 'Nada esperando por você. 🎉' : 'Vazio.') + '</div>';
+      }
+      itens.forEach(function(x){
+        html += '<div class="mail" data-id="' + escapeXml(x.m.id) + '">' +
+          '<span class="mail-dot" style="background:' + (x.m.cor || 'var(--theme)') + '"></span>' +
+          '<div class="mail-main">' +
+            '<div class="mail-from">' + escapeXml(x.m.remetente) + '</div>' +
+            '<div class="mail-subject">' + escapeXml(x.m.assunto) + '</div>' +
+            '<div class="mail-summary">' + escapeXml(x.t.resumo || '') + '</div>' +
+            '<div class="mail-excerpt">' + escapeXml((x.m.trecho || '(sem prévia)').slice(0, 500)) + '</div>' +
+          '</div>' +
+          '<div class="mail-when mono">' + escapeXml(tempoRelativo(x.m.quandoMs)) + '</div>' +
+        '</div>';
+      });
+      html += '</div></div>';
+    });
+
+    body.innerHTML = html;
+
+    body.querySelectorAll('.bucket-head').forEach(function(h){
+      h.addEventListener('click', function(){ h.parentNode.classList.toggle('collapsed'); });
+    });
+    body.querySelectorAll('.mail').forEach(function(el){
+      el.addEventListener('click', function(){ el.classList.toggle('open'); });
+    });
+
+    var marca = origem === 'local' ? ' · triagem local' : (origem === 'ia' ? ' · triagem IA' : '');
+    meta.textContent = mailItems.length + ' e-mails · ' + baldes.acao.length + ' pedem ação' + marca;
+    atualizarBadges();
+  }
+
+  function atualizarBadges(){
+    var n = contarAcao();
+    var hud = document.getElementById('hudBadge');
+    var tab = document.getElementById('tabMailBadge');
+    if(hud){ hud.textContent = '⚡ ' + n; hud.className = n ? '' : 'zero'; }
+    if(tab){ tab.textContent = n; tab.className = 'tab-badge' + (n ? '' : ' zero'); }
+  }
+
+  /* ─────────── MÓDULO NOTÍCIAS ─────────── */
+
+  function urlNoticias(assunto){
+    return 'https://news.google.com/rss/search?q=' + encodeURIComponent(assunto) +
+           '&hl=pt-BR&gl=BR&ceid=BR:pt-419';
+  }
+  function limparManchete(t){
+    return String(t).replace(/\s+-\s+[^-]{2,40}$/, '').trim();
+  }
+
+  function carregarNoticias(forcar){
+    var body = document.getElementById('newsBody');
+    var meta = document.getElementById('newsMeta');
+    if(newsLoading) return Promise.resolve();
+
+    var idade = Date.now() - (newsCache.quando || 0);
+    if(!forcar && newsCache.dados && idade < settings.newsInterval * 60000){
+      newsData = newsCache.dados;
+      renderNoticias();
+      return Promise.resolve();
+    }
+
+    newsLoading = true;
+    meta.textContent = 'buscando...';
+
+    return checarAntena().then(function(ok){
+      if(!ok){
+        body.innerHTML = avisoAntena();
+        meta.textContent = 'antena offline';
+        newsLoading = false;
+        return;
+      }
+      return Promise.all(settings.topics.map(function(assunto){
+        return viaAntena(urlNoticias(assunto)).then(function(xml){
+          var doc = new DOMParser().parseFromString(xml, 'text/xml');
+          var itens = [];
+          doc.querySelectorAll('item').forEach(function(it){
+            if(itens.length >= settings.newsCount) return;
+            var titulo = (it.querySelector('title') || {}).textContent || '';
+            var link = (it.querySelector('link') || {}).textContent || '';
+            var pub = (it.querySelector('pubDate') || {}).textContent || '';
+            var fonte = (it.querySelector('source') || {}).textContent || '';
+            itens.push({
+              titulo: limparManchete(titulo),
+              tituloBruto: titulo,
+              link: link,
+              fonte: fonte,
+              quandoMs: Date.parse(pub) || Date.now()
+            });
+          });
+          return { assunto:assunto, itens:itens };
+        }).catch(function(){ return { assunto:assunto, itens:[], erro:true }; });
+      })).then(function(res){
+        newsData = {};
+        res.forEach(function(r){ newsData[r.assunto] = r.itens; });
+        newsCache = { quando:Date.now(), dados:newsData };
+        lsSet('jarvis_news_cache', newsCache);
+        newsLoading = false;
+        renderNoticias();
+      });
+    }).catch(function(){
+      newsLoading = false;
+      body.innerHTML = '<div class="warn">Não consegui buscar as notícias agora.</div>';
+    });
+  }
+
+  function renderNoticias(){
+    var body = document.getElementById('newsBody');
+    var meta = document.getElementById('newsMeta');
+    if(!body) return;
+    var html = '', total = 0;
+    settings.topics.forEach(function(assunto){
+      var itens = newsData[assunto] || [];
+      total += itens.length;
+      html += '<div class="topic"><div class="topic-head mono">' + escapeXml(assunto) + '</div>';
+      if(!itens.length){
+        html += '<div class="empty">Sem manchetes agora.</div>';
+      }
+      itens.forEach(function(n){
+        html += '<a class="headline" href="' + escapeXml(n.link) + '" target="_blank" rel="noopener">' +
+          '<div class="headline-title">' + escapeXml(n.titulo) + '</div>' +
+          '<div class="headline-sub">' + escapeXml(n.fonte || 'Google News') + ' · ' +
+          escapeXml(tempoRelativo(n.quandoMs)) + '</div></a>';
+      });
+      html += '</div>';
+    });
+    body.innerHTML = html;
+    var quando = newsCache.quando ? ' · atualizado ' + tempoRelativo(newsCache.quando) : '';
+    meta.textContent = total + ' manchetes' + quando;
+  }
+
+  /* ─────────── CLIMA (Open-Meteo, grátis e sem chave) ─────────── */
+
+  var WMO = {
+    0:'céu limpo', 1:'quase limpo', 2:'parcialmente nublado', 3:'nublado',
+    45:'névoa', 48:'névoa gelada', 51:'garoa fraca', 53:'garoa', 55:'garoa forte',
+    61:'chuva fraca', 63:'chuva', 65:'chuva forte', 71:'neve fraca', 73:'neve', 75:'neve forte',
+    80:'pancadas de chuva', 81:'pancadas fortes', 82:'pancadas muito fortes',
+    95:'tempestade', 96:'tempestade com granizo', 99:'tempestade forte com granizo'
+  };
+
+  function buscarGeo(){
+    if(geoCache && geoCache.cidade === settings.city) return Promise.resolve(geoCache);
+    return fetch('https://geocoding-api.open-meteo.com/v1/search?name=' +
+                 encodeURIComponent(settings.city) + '&count=1&language=pt&format=json')
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(!j.results || !j.results.length) throw new Error('cidade não encontrada');
+        geoCache = { cidade:settings.city, lat:j.results[0].latitude, lon:j.results[0].longitude };
+        lsSet('jarvis_geo', geoCache);
+        return geoCache;
+      });
+  }
+
+  function buscarClima(){
+    if(!settings.weather) return Promise.resolve(null);
+    return buscarGeo().then(function(g){
+      return fetch('https://api.open-meteo.com/v1/forecast?latitude=' + g.lat +
+        '&longitude=' + g.lon +
+        '&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max' +
+        '&current=temperature_2m,weather_code&timezone=' + encodeURIComponent(TZ) + '&forecast_days=1')
+        .then(function(r){ return r.json(); });
+    }).then(function(j){
+      if(!j.daily) return null;
+      lastWeather = {
+        agora: Math.round(j.current ? j.current.temperature_2m : j.daily.temperature_2m_max[0]),
+        max: Math.round(j.daily.temperature_2m_max[0]),
+        min: Math.round(j.daily.temperature_2m_min[0]),
+        chuva: j.daily.precipitation_probability_max ? j.daily.precipitation_probability_max[0] : null,
+        desc: WMO[j.daily.weather_code[0]] || 'tempo indefinido'
+      };
+      return lastWeather;
+    }).catch(function(){ return null; });
+  }
+
+  /* ─────────── MORNING DIGEST ─────────── */
+
+  function pacoteDigest(clima){
+    var agora = new Date();
+    var p = wallParts(Date.now(), TZ);
+    var dow = new Date(Date.UTC(p.y, p.mo, p.d)).getUTCDay();
+    var partes = [];
+
+    partes.push('Data: ' + DIAS_FALA[dow] + ', ' + p.d + '/' + (p.mo + 1) + '/' + p.y + '.');
+
+    if(clima){
+      partes.push('Clima em ' + settings.city + ': ' + clima.desc + ', agora ' + clima.agora +
+        '°C, máxima ' + clima.max + '°C, mínima ' + clima.min + '°C' +
+        (clima.chuva !== null ? ', ' + clima.chuva + '% de chance de chuva' : '') + '.');
+    }
+
+    var hoje = eventosDeHoje();
+    if(hoje.length){
+      partes.push('Agenda de hoje: ' + hoje.slice(0, 15).map(function(e){
+        return (e.allDay ? 'dia todo' : hhmm(e.ms)) + ' ' + e.titulo;
+      }).join(' · ') + '.');
+    } else {
+      partes.push('Agenda de hoje: nenhum compromisso marcado.');
+    }
+
+    var acao = mailItems.filter(function(m){
+      var t = triageCache[m.id];
+      return t && t.balde === 'acao';
+    });
+    partes.push('E-mails: ' + mailItems.length + ' recentes, ' + acao.length + ' pedem ação.');
+    if(acao.length){
+      partes.push('Pedem ação: ' + acao.slice(0, 6).map(function(m){
+        return (triageCache[m.id].resumo || m.assunto);
+      }).join(' · ') + '.');
+    }
+
+    settings.topics.forEach(function(a){
+      var itens = (newsData[a] || []).slice(0, 3);
+      if(itens.length){
+        partes.push('Notícias de ' + a + ': ' + itens.map(function(n){ return n.titulo; }).join(' · ') + '.');
+      }
+    });
+
+    var metas = notes.filter(function(n){ return n.area === 'metas'; }).slice(0, 2);
+    if(metas.length){
+      partes.push('Metas do Second Brain: ' + metas.map(function(n){
+        return n.title + ' — ' + n.body;
+      }).join(' | '));
+    }
+
+    return partes.join('\n');
+  }
+
+  function digestOffline(clima){
+    var p = wallParts(Date.now(), TZ);
+    var dow = new Date(Date.UTC(p.y, p.mo, p.d)).getUTCDay();
+    var linhas = ['Bom dia, ' + CONFIG.address + '. Hoje é ' + DIAS_FALA[dow] + ', ' +
+                  p.d + ' de ' + ['janeiro','fevereiro','março','abril','maio','junho','julho',
+                  'agosto','setembro','outubro','novembro','dezembro'][p.mo] + '.'];
+
+    if(clima){
+      linhas.push('Em ' + settings.city + ': ' + clima.desc + ', entre ' + clima.min + ' e ' + clima.max + ' graus' +
+        (clima.chuva !== null && clima.chuva > 30 ? ', com ' + clima.chuva + '% de chance de chuva' : '') + '.');
+    }
+
+    var hoje = eventosDeHoje();
+    if(hoje.length){
+      linhas.push('Na agenda: ' + hoje.map(function(e){
+        return (e.allDay ? e.titulo + ' o dia todo' : e.titulo + ' às ' + horaFalada(e.ms));
+      }).join(', ') + '.');
+    } else {
+      linhas.push('Sua agenda de hoje está livre.');
+    }
+
+    var acao = mailItems.filter(function(m){
+      var t = triageCache[m.id];
+      return t && t.balde === 'acao';
+    });
+    if(acao.length){
+      linhas.push(acao.length + (acao.length === 1 ? ' e-mail pede' : ' e-mails pedem') + ' sua ação: ' +
+        acao.slice(0, 4).map(function(m){ return triageCache[m.id].resumo || m.assunto; }).join('; ') + '.');
+    } else {
+      linhas.push('Nenhum e-mail pedindo ação no momento.');
+    }
+
+    settings.topics.forEach(function(a){
+      var itens = (newsData[a] || []).slice(0, 2);
+      if(itens.length){
+        linhas.push('Em ' + a + ': ' + itens.map(function(n){ return n.titulo; }).join('; ') + '.');
+      }
+    });
+
+    var meta = notes.filter(function(n){ return n.area === 'metas'; })[0];
+    if(meta) linhas.push('Foco do dia: ' + meta.body);
+
+    return linhas.join(' ');
+  }
+
+  var digestRodando = false;
+
+  function gerarDigest(forcado){
+    var body = document.getElementById('digestBody');
+    var meta = document.getElementById('digestMeta');
+    var hojeStr = dayKey(Date.now());
+
+    if(!forcado && settings.economy && localStorage.getItem('jarvis_last_digest') === hojeStr){
+      return Promise.resolve(false);
+    }
+    /* Trava contra corrida: automático + "bom dia" juntos gastariam 2 chamadas. */
+    if(digestRodando) return Promise.resolve(false);
+    digestRodando = true;
+
+    meta.textContent = 'montando...';
+    setState('thinking');
+
+    return Promise.all([
+      carregarAgenda().catch(function(){}),
+      carregarNoticias(false).catch(function(){}),
+      buscarClima()
+    ]).then(function(r){
+      var clima = r[2];
+      var pacote = pacoteDigest(clima);
+      var maxTok = settings.digestSize === 'medio' ? 800 : 500;
+      var tamanho = settings.digestSize === 'medio'
+        ? 'cerca de 1 minuto de fala (150 a 180 palavras)'
+        : 'cerca de 30 segundos de fala (70 a 100 palavras)';
+
+      var system = 'Você é ' + CONFIG.name + ', assistente pessoal de ' + CONFIG.address +
+        '. Personalidade: ' + CONFIG.persona + '. Trate o usuário como "' + CONFIG.address + '".\n' +
+        'Monte um briefing matinal corrido, natural e falável em português do Brasil, com ' + tamanho + '.\n' +
+        'Sem emojis, sem markdown, sem listas com marcadores, sem títulos. Texto corrido para ser lido em voz alta.\n' +
+        'Comece cumprimentando com o dia da semana e a data. Termine SEMPRE com uma frase de foco do dia ' +
+        'conectada às metas do Second Brain.';
+
+      return chamarClaude(system, [{ role:'user', content:'Dados de hoje:\n\n' + pacote }], maxTok)
+        .then(function(txt){ return { texto:txt.trim(), clima:clima, offline:false }; })
+        .catch(function(){ return { texto:digestOffline(clima), clima:clima, offline:true }; });
+    }).then(function(res){
+      lastDigestText = res.texto;
+      localStorage.setItem('jarvis_last_digest', hojeStr);
+
+      var p = wallParts(Date.now(), TZ);
+      var dow = new Date(Date.UTC(p.y, p.mo, p.d)).getUTCDay();
+      var html = '<div class="digest-card">' +
+        '<div class="digest-date mono">' + escapeXml(DIAS[dow]) + ' · ' +
+          ('0' + p.d).slice(-2) + '/' + ('0' + (p.mo + 1)).slice(-2) + '/' + p.y + '</div>';
+
+      if(res.clima){
+        html += '<div class="digest-weather">' +
+          '<div class="weather-temp mono">' + res.clima.agora + '°</div>' +
+          '<div class="weather-desc">' + escapeXml(settings.city) + ' · ' + escapeXml(res.clima.desc) + '<br>' +
+          'máx ' + res.clima.max + '° · mín ' + res.clima.min + '°' +
+          (res.clima.chuva !== null ? ' · ' + res.clima.chuva + '% chuva' : '') + '</div></div>';
+      }
+
+      html += '<div class="digest-text">' + escapeXml(res.texto) + '</div></div>';
+      body.innerHTML = html;
+      meta.textContent = res.offline ? 'gerado offline · sem custo' : 'gerado agora';
+
+      abrirAba('digest');
+      digestRodando = false;
+      if(settings.digestSpeak) speak(res.texto);
+      else { setState('idle'); setStatus(idleStatusText()); }
+      return true;
+    }).catch(function(){
+      digestRodando = false;
+      setState('idle');
+      setStatus(idleStatusText());
+      meta.textContent = 'falhou';
+      body.innerHTML = '<div class="warn">Não consegui montar o digest agora.</div>';
+      return false;
+    });
+  }
+
+  /* ─────────── COMANDOS DE VOZ LOCAIS (sem gastar API) ─────────── */
+
+  /* Hora que soa natural quando falada: "às 9 horas", "às 21 e 30". */
+  function horaFalada(ms){
+    var p = wallParts(ms, TZ);
+    if(p.mi === 0) return p.h + (p.h === 1 ? ' hora' : ' horas');
+    return p.h + ' e ' + p.mi;
+  }
+  function plural(n, um, muitos){
+    return n + ' ' + (n === 1 ? um : muitos);
+  }
+
+  function falarEventos(lista, prefixo){
+    if(!lista.length) return prefixo + ' nada marcado.';
+    return prefixo + ' ' + lista.map(function(e){
+      return e.allDay ? (e.titulo + ', o dia todo') : (e.titulo + ' às ' + horaFalada(e.ms));
+    }).join('; ') + '.';
+  }
+
+  function handleLocalCommand(texto){
+    var t = normalize(texto);
+
+    if(/\bbom dia\b/.test(t)){
+      abrirAba('digest');
+      respondAndSpeak('Montando seu briefing, ' + CONFIG.address + '. Um instante.');
+      setTimeout(function(){ gerarDigest(true); }, 900);
+      return true;
+    }
+
+    if(/atualizar (os )?e-?mails?/.test(t) || /atualiza (os )?e-?mails?/.test(t)){
+      abrirAba('emails');
+      respondAndSpeak('Buscando seus e-mails agora.');
+      carregarEmails();
+      return true;
+    }
+    if(/atualizar (as )?noticias/.test(t) || /atualiza (as )?noticias/.test(t)){
+      abrirAba('news');
+      respondAndSpeak('Atualizando o radar de notícias.');
+      carregarNoticias(true);
+      return true;
+    }
+
+    if(/proxim[oa] (compromisso|reuniao|evento|encontro)/.test(t)){
+      abrirAba('agenda');
+      var prox = calEvents.filter(function(e){ return e.ms > Date.now(); })[0];
+      respondAndSpeak(prox
+        ? ('Seu próximo compromisso é ' + prox.titulo + ', ' + faltaPara(prox.ms) +
+           (prox.allDay ? '.' : ', às ' + horaFalada(prox.ms) + '.'))
+        : 'Não tem nada agendado à frente nos próximos dias.');
+      return true;
+    }
+
+    if(/agenda da semana|agenda dos proximos|proximos dias/.test(t)){
+      abrirAba('agenda');
+      var futuros = calEvents.filter(function(e){ return e.ms > Date.now(); }).slice(0, 10);
+      if(!futuros.length){ respondAndSpeak('Sua semana está limpa, ' + CONFIG.address + '.'); return true; }
+      var porDia = {}, ordemDias = [];
+      futuros.forEach(function(e){
+        var k = dayKey(e.ms);
+        if(!porDia[k]){ porDia[k] = []; ordemDias.push(k); }
+        porDia[k].push(e);
+      });
+      var fala = ordemDias.map(function(k){
+        var evs = porDia[k];
+        return rotuloDia(evs[0].ms, Date.now()).split(' · ')[0].toLowerCase() + ': ' +
+               evs.map(function(e){ return e.titulo; }).join(', ');
+      }).join('. ');
+      respondAndSpeak('Sua semana: ' + fala + '.');
+      return true;
+    }
+
+    if(/minha agenda|meus compromissos|o que eu tenho hoje|agenda de hoje|tenho hoje/.test(t)){
+      abrirAba('agenda');
+      respondAndSpeak(falarEventos(eventosDeHoje(), 'Hoje você tem:'));
+      return true;
+    }
+
+    if(/tem e-?mail importante|e-?mail importante|algo importante no e-?mail/.test(t)){
+      abrirAba('emails');
+      var acao = mailItems.filter(function(m){
+        var x = triageCache[m.id];
+        return x && x.balde === 'acao';
+      });
+      respondAndSpeak(acao.length
+        ? (acao.length + (acao.length === 1 ? ' e-mail pede' : ' e-mails pedem') + ' sua ação. ' +
+           acao.slice(0, 4).map(function(m){ return triageCache[m.id].resumo || m.assunto; }).join('. ') + '.')
+        : 'Nada pedindo sua ação. Caixa tranquila, ' + CONFIG.address + '.');
+      return true;
+    }
+
+    if(/meus e-?mails|minha caixa|caixa de entrada|meu email/.test(t)){
+      abrirAba('emails');
+      var b = { acao:0, info:0, ruido:0 };
+      mailItems.forEach(function(m){
+        var x = triageCache[m.id];
+        b[x ? x.balde : 'info']++;
+      });
+      var resumo = 'Você tem ' + plural(mailItems.length, 'e-mail recente', 'e-mails recentes') + ': ' +
+                   b.acao + ' pedindo ação, ' + b.info +
+                   (b.info === 1 ? ' informativo' : ' informativos') + ' e ' + b.ruido + ' de ruído.';
+      var acao2 = mailItems.filter(function(m){
+        var x = triageCache[m.id];
+        return x && x.balde === 'acao';
+      });
+      if(acao2.length){
+        resumo += ' Os que pedem ação: ' + acao2.slice(0, 4).map(function(m){
+          return triageCache[m.id].resumo || m.assunto;
+        }).join('. ') + '.';
+      }
+      respondAndSpeak(resumo);
+      return true;
+    }
+
+    var mNot = t.match(/noticias (de|sobre|da|do) (.+)$/);
+    if(mNot){
+      abrirAba('news');
+      var busca = mNot[2].trim();
+      var achou = settings.topics.filter(function(a){
+        return normalize(a).indexOf(busca) !== -1 || busca.indexOf(normalize(a)) !== -1;
+      })[0];
+      if(achou){
+        var itens = (newsData[achou] || []).slice(0, 4);
+        respondAndSpeak(itens.length
+          ? ('Em ' + achou + ': ' + itens.map(function(n){ return n.titulo; }).join('. ') + '.')
+          : ('Ainda não tenho manchetes de ' + achou + '.'));
+      } else {
+        respondAndSpeak('Não tenho ' + busca + ' no seu radar. Seus assuntos são: ' +
+                        settings.topics.join(' e ') + '.');
+      }
+      return true;
+    }
+
+    if(/^(.*\b)?(noticias|manchetes|o que ta rolando|novidades)\b/.test(t)){
+      abrirAba('news');
+      var falas = [];
+      settings.topics.forEach(function(a){
+        var itens = (newsData[a] || []).slice(0, 3);
+        if(itens.length) falas.push('Em ' + a + ': ' + itens.map(function(n){ return n.titulo; }).join('. '));
+      });
+      respondAndSpeak(falas.length ? falas.join('. ') + '.' : 'O radar ainda está vazio. Confira se a antena está rodando.');
+      return true;
+    }
+
+    return false;
+  }
+
+  /* ─────────── ENVELOPAMENTO DA PARTE 1 ─────────── */
+
+  var __origBuildSystemPrompt = buildSystemPrompt;
+  buildSystemPrompt = function(){
+    var base = __origBuildSystemPrompt();
+    var extra = 'CONTEXTO AO VIVO (use quando fizer sentido, sem repetir à toa):\n' +
+      agendaCompacta() + '\n' +
+      'E-mails pedindo ação: ' + contarAcao() + '\n\n' +
+      'MÓDULOS QUE VOCÊ CONTROLA: agenda (várias agendas Google mescladas), e-mails (triados em ação, ' +
+      'info e ruído), radar de notícias (' + settings.topics.join(', ') + ') e o morning digest. ' +
+      'Se o usuário perguntar o que você sabe fazer, cite estes comandos: "minha agenda", ' +
+      '"próximo compromisso", "agenda da semana", "meus e-mails", "tem e-mail importante?", ' +
+      '"notícias", "notícias de <assunto>", "bom dia" para o briefing, ' +
+      '"atualizar e-mails" e "atualizar notícias".';
+    return base + '\n\n' + extra;
+  };
+
+  var __origActivateAndSend = activateAndSend;
+  activateAndSend = function(texto){
+    var t = (texto || '').trim();
+    if(!t) return;
+    userLineEl.textContent = 'Você: ' + t;
+    if(settings && settings.economy !== false && handleLocalCommand(t)) return;
+    __origActivateAndSend(t);
+  };
+
+  /* ─────────── ABAS ─────────── */
+
+  function abrirAba(nome){
+    document.querySelectorAll('.tab').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-tab') === nome);
+    });
+    document.querySelectorAll('.panel-body').forEach(function(p){
+      p.classList.toggle('active', p.id === 'tab-' + nome);
+    });
+  }
+
+  /* ─────────── PAINEL ⚙ ─────────── */
+
+  function renderCfgCalendars(){
+    var wrap = document.getElementById('cfgCalendars');
+    wrap.innerHTML = '';
+    calendars.forEach(function(cal, idx){
+      var row = document.createElement('div');
+      row.className = 'cfg-row';
+      row.innerHTML =
+        '<input type="color" value="' + cal.cor + '" data-f="cor">' +
+        '<input type="text" placeholder="Nome da agenda" value="' + escapeXml(cal.nome) + '" data-f="nome" style="max-width:170px;">' +
+        '<input type="text" placeholder="Endereço secreto em formato iCal (…/private-…/basic.ics)" value="' + escapeXml(cal.url) + '" data-f="url">' +
+        '<button class="rm" title="Remover">✕</button>';
+      row.querySelectorAll('[data-f]').forEach(function(inp){
+        inp.addEventListener('input', function(){ cal[inp.getAttribute('data-f')] = inp.value; });
+      });
+      row.querySelector('.rm').addEventListener('click', function(){
+        calendars.splice(idx, 1); renderCfgCalendars();
+      });
+      wrap.appendChild(row);
+    });
+  }
+
+  function renderCfgEmails(){
+    var wrap = document.getElementById('cfgEmails');
+    wrap.innerHTML = '';
+    mailboxes.forEach(function(box, idx){
+      var row = document.createElement('div');
+      row.className = 'cfg-row';
+      row.innerHTML =
+        '<input type="color" value="' + box.cor + '" data-f="cor">' +
+        '<input type="text" placeholder="Apelido" value="' + escapeXml(box.apelido) + '" data-f="apelido" style="max-width:130px;">' +
+        '<input type="text" placeholder="seu@gmail.com" value="' + escapeXml(box.usuario) + '" data-f="usuario">' +
+        '<input type="password" placeholder="senha de app (16 letras)" value="' + escapeXml(box.senhaApp) + '" data-f="senhaApp" style="max-width:180px;">' +
+        '<button class="rm" title="Remover">✕</button>';
+      row.querySelectorAll('[data-f]').forEach(function(inp){
+        inp.addEventListener('input', function(){ box[inp.getAttribute('data-f')] = inp.value; });
+      });
+      row.querySelector('.rm').addEventListener('click', function(){
+        mailboxes.splice(idx, 1); renderCfgEmails();
+      });
+      wrap.appendChild(row);
+    });
+  }
+
+  function abrirConfig(){
+    renderCfgCalendars();
+    renderCfgEmails();
+    document.getElementById('cfgTopics').value = settings.topics.join('\n');
+    document.getElementById('cfgNewsCount').value = settings.newsCount;
+    document.getElementById('cfgNewsInterval').value = settings.newsInterval;
+    document.getElementById('cfgMailCount').value = settings.mailCount;
+    document.getElementById('cfgMailInterval').value = settings.mailInterval;
+    document.getElementById('cfgCity').value = settings.city;
+    document.getElementById('cfgDigestSize').value = settings.digestSize;
+    document.getElementById('cfgDigestSpeak').checked = !!settings.digestSpeak;
+    document.getElementById('cfgDigestAuto').checked = !!settings.digestAuto;
+    document.getElementById('cfgWeather').checked = !!settings.weather;
+    document.getElementById('cfgModel').value = settings.model;
+    document.getElementById('cfgEconomy').checked = !!settings.economy;
+    document.getElementById('settingsModal').classList.remove('hidden');
+  }
+
+  function salvarConfig(){
+    settings.topics = document.getElementById('cfgTopics').value
+      .split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
+    if(!settings.topics.length) settings.topics = DEF_SETTINGS.topics.slice();
+    settings.newsCount    = Math.max(1, Math.min(15, parseInt(document.getElementById('cfgNewsCount').value, 10) || 5));
+    settings.newsInterval = Math.max(5, parseInt(document.getElementById('cfgNewsInterval').value, 10) || 30);
+    settings.mailCount    = Math.max(1, Math.min(50, parseInt(document.getElementById('cfgMailCount').value, 10) || 20));
+    settings.mailInterval = Math.max(5, parseInt(document.getElementById('cfgMailInterval').value, 10) || 15);
+    settings.city         = document.getElementById('cfgCity').value.trim() || DEF_SETTINGS.city;
+    settings.digestSize   = document.getElementById('cfgDigestSize').value;
+    settings.digestSpeak  = document.getElementById('cfgDigestSpeak').checked;
+    settings.digestAuto   = document.getElementById('cfgDigestAuto').checked;
+    settings.weather      = document.getElementById('cfgWeather').checked;
+    settings.model        = document.getElementById('cfgModel').value;
+    settings.economy      = document.getElementById('cfgEconomy').checked;
+
+    lsSet('jarvis_calendars', calendars);
+    lsSet('jarvis_emails', mailboxes);
+    lsSet('jarvis_settings', settings);
+
+    /* Reutiliza a MESMA referência de modelo que a Parte 1 já usa nas chamadas. */
+    CONFIG.model = (MODELS[settings.model] || MODELS.equilibrado).id;
+
+    document.getElementById('settingsModal').classList.add('hidden');
+    carregarAgenda();
+    carregarEmails();
+    carregarNoticias(true);
+  }
+
+  /* ─────────── INICIALIZAÇÃO DOS MÓDULOS ─────────── */
+
+  function initModules(){
+    calendars   = lsGet('jarvis_calendars', DEF_CALENDARS);
+    mailboxes   = lsGet('jarvis_emails', DEF_MAILBOXES);
+    settings    = lsGet('jarvis_settings', DEF_SETTINGS);
+    triageCache = lsGet('jarvis_email_triage', {});
+    newsCache   = lsGet('jarvis_news_cache', {});
+    geoCache    = lsGet('jarvis_geo', null);
+
+    Object.keys(DEF_SETTINGS).forEach(function(k){
+      if(settings[k] === undefined) settings[k] = DEF_SETTINGS[k];
+    });
+
+    CONFIG.model = (MODELS[settings.model] || MODELS.equilibrado).id;
+
+    document.querySelectorAll('.tab').forEach(function(b){
+      b.addEventListener('click', function(){ abrirAba(b.getAttribute('data-tab')); });
+    });
+
+    document.getElementById('settingsBtn').addEventListener('click', abrirConfig);
+    document.getElementById('cfgCancel').addEventListener('click', function(){
+      document.getElementById('settingsModal').classList.add('hidden');
+      calendars = lsGet('jarvis_calendars', DEF_CALENDARS);
+      mailboxes = lsGet('jarvis_emails', DEF_MAILBOXES);
+    });
+    document.getElementById('cfgSave').addEventListener('click', salvarConfig);
+    document.getElementById('cfgAddCalendar').addEventListener('click', function(){
+      calendars.push({ id:'cal' + Date.now(), nome:'Nova agenda', cor:CONFIG.themeColor, url:'' });
+      renderCfgCalendars();
+    });
+    document.getElementById('cfgAddEmail').addEventListener('click', function(){
+      mailboxes.push({ id:'box' + Date.now(), apelido:'Nova conta', cor:CONFIG.accentColor,
+                       host:'imap.gmail.com', usuario:'', senhaApp:'' });
+      renderCfgEmails();
+    });
+
+    document.getElementById('agendaRefresh').addEventListener('click', carregarAgenda);
+    document.getElementById('emailsRefresh').addEventListener('click', carregarEmails);
+    document.getElementById('newsRefresh').addEventListener('click', function(){ carregarNoticias(true); });
+    document.getElementById('digestRun').addEventListener('click', function(){ gerarDigest(true); });
+
+    /* Cache local para o painel não nascer vazio enquanto a antena responde. */
+    var cc = lsGet('jarvis_cal_cache', null);
+    if(cc && cc.eventos){ calEvents = cc.eventos; renderAgenda(); }
+    var mc = lsGet('jarvis_mail_cache', null);
+    if(mc && mc.itens){ mailItems = mc.itens; renderEmails('cache'); }
+    if(newsCache.dados){ newsData = newsCache.dados; renderNoticias(); }
+    atualizarBadges();
+
+    checarAntena().then(function(){
+      carregarAgenda();
+      carregarEmails();
+      carregarNoticias(false);
+    });
+
+    setInterval(carregarAgenda, 10 * 60000);
+    setInterval(function(){ carregarEmails(); }, Math.max(5, settings.mailInterval) * 60000);
+    setInterval(function(){ carregarNoticias(false); }, Math.max(5, settings.newsInterval) * 60000);
+    setInterval(function(){ if(calEvents.length) renderAgenda(); }, 30000);
+    setInterval(checarAntena, 60000);
+
+    /* Digest automático na primeira ativação do dia (roda depois do listener da Parte 1). */
+    activateBtn.addEventListener('click', function(){
+      if(!settings.digestAuto) return;
+      if(localStorage.getItem('jarvis_last_digest') === dayKey(Date.now())) return;
+      setTimeout(function(){ gerarDigest(false); }, 4500);
+    });
+  }
+
+  var __origInit = init;
+  init = function(){ __origInit(); initModules(); };
 
   document.addEventListener('DOMContentLoaded', init);
 })();
