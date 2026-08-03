@@ -164,10 +164,17 @@ com o Notion.
 ## R9 · Jarvis dentro do repositório do site do Apolo Oliver — **MÉDIO**
 
 Dois produtos sem relação no mesmo repo e no mesmo deploy. Consequências já observáveis: todo push
-do Jarvis dispara dois builds da Vercel do site do artista; o histórico mistura os dois; e um
-`jarvis-hauck.html` na raiz de um projeto Next.js é publicado como asset estático — ou seja, **o
-arquivo pode acabar exposto publicamente na URL do site**. Não confirmei se está acessível hoje
-(o preview exige autenticação), mas o risco é estrutural e fácil de eliminar separando os repos.
+do Jarvis dispara dois builds da Vercel do site do artista; o histórico e o PR misturam os dois; e
+o acoplamento faz o Jarvis herdar o ciclo de deploy de um produto com o qual não tem relação.
+
+**Correção de uma afirmação anterior desta auditoria:** uma versão inicial deste documento dizia que
+o `jarvis-hauck.html` poderia estar exposto publicamente na URL do site. **Isso está errado.** O
+Next.js serve como estático apenas o que está em `public/`; o Jarvis está na **raiz** do projeto, e
+o `next.config.js` não tem `rewrites`, `headers`, `assetPrefix` nem `output` customizado. O arquivo
+é código-fonte que a Vercel clona para buildar, e **não é publicado**. Não consegui testar por HTTP
+(o sandbox bloqueia egress para `vercel.app`), mas a verificação estática é conclusiva.
+
+O risco permanece MÉDIO pelos motivos de acoplamento acima — não por exposição.
 
 ---
 

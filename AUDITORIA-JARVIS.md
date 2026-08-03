@@ -318,7 +318,8 @@ Nada é escrito nos dois lados.
    personalizou.
 5. **R4 — Antena sem `Origin`/`Host` (MÉDIO).** Impacto hoje baixo, mas cresce se a antena ganhar rotas.
 6. **D6 — Sem identidade estável de dados (ALTA como dívida).** Bloqueia integração limpa com Notion.
-7. **R9 — Repo compartilhado (MÉDIO).** Risco de o `jarvis-hauck.html` ser servido publicamente.
+7. **R9 — Repo compartilhado (MÉDIO).** Acoplamento de deploy e histórico com um produto sem
+   relação. (O arquivo **não** fica exposto publicamente — ver correção no R9 da matriz de riscos.)
 
 ---
 

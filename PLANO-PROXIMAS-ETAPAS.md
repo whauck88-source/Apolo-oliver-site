@@ -14,8 +14,9 @@ correções baratas.
 **Resolve:** R9, D10 · **Esforço:** baixo (algumas horas) · **Depende de:** decisão D-1
 
 O Jarvis está dentro de `apolo-oliver-site` (Next.js + Supabase + Stripe do site de um artista).
-Todo push dispara dois builds da Vercel de um produto sem relação, e um `.html` na raiz de um
-projeto Next.js corre o risco de ser servido publicamente como asset estático.
+Todo push dispara dois builds da Vercel de um produto sem relação, o histórico e o PR misturam os
+dois, e o Jarvis herda um ciclo de deploy que não é dele. (O arquivo **não** fica exposto
+publicamente — só `public/` é servido; ver R9 corrigido na matriz de riscos.)
 
 - Criar `jarvis-hauck` com `jarvis-hauck.html`, `server.js`, `README.md` e os 5 `.md` desta auditoria.
 - Levar o histórico dos 3 commits do Jarvis (`git log --follow` ou `filter-repo`).
