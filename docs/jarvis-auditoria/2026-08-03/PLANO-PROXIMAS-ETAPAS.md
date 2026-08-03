@@ -108,7 +108,7 @@ sync, sem nunca alterar o Notion.
 |---|---|---|
 | 6 | n8n como transporte: sync agendado Notion↔Jarvis, push no celular | Etapa 5 |
 | 7 | Escrita no Notion via aprovação explícita | Etapas 5 e 6 |
-| 8 | Suíte de testes versionada (os 34 desta auditoria) | Etapa 1 |
+| 8 | Suíte de testes versionada (os 45 desta auditoria) | Etapa 1 |
 | 9 | Unificar as camadas de CSS (D1) | Etapa 1 |
 | 10 | Definir fronteira com o app atual (D-5) | Decisão D-4 |
 
