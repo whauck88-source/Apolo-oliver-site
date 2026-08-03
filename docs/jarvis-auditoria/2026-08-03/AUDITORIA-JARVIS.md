@@ -44,7 +44,7 @@ os riscos atuais viram prejuízo real).
 | Seguro? | **Parcialmente.** Somente-leitura no externo (ótimo), mas credenciais desprotegidas e injeção possível |
 | Manutenível? | **Médio.** Higiene excelente, mas 160 KB num arquivo, sem testes automatizados, com 2 camadas de CSS sobrepostas |
 | Pronto para integrar Notion/n8n? | **Não.** Falta backup, exportação, identidade de dados e defesa contra injeção |
-| Testado? | Agora sim: **34 testes** executados nesta auditoria |
+| Testado? | Agora sim: **45 testes** executados nesta auditoria (T01–T45) |
 
 ---
 
@@ -74,7 +74,13 @@ Percentual = quanto do que o módulo precisa para ser confiável no uso diário 
 | **n8n** | **0%** | **Apenas planejado** | Tudo |
 | **Integração com o app atual** | **0%** | **Apenas planejado** | Tudo |
 
-**Média ponderada do que foi construído: ~85%. Da visão completa (com Notion/n8n): ~55%.**
+**Média dos 16 módulos construídos: 84,7% (≈85%).** Média aritmética das 19 linhas da tabela,
+contando Notion, n8n e a integração com o app atual como 0%: **71,3%**.
+
+> Uma versão anterior afirmava "~55% da visão completa". Esse número **não era derivável da tabela**
+> e foi corrigido. Os dois percentuais acima são médias aritméticas simples e verificáveis. Qualquer
+> leitura de "quanto falta para a visão completa" depende de peso atribuído a cada módulo — peso que
+> esta auditoria não define, porque seria julgamento e não medição.
 
 ---
 
@@ -109,7 +115,14 @@ cai no template offline.
 
 # 5. O que está quebrado
 
-**Nada quebrado foi encontrado.** Zero erros de JS em todos os cenários testados.
+**Nenhuma falha funcional foi encontrada. Foram identificadas três falhas de segurança ou isolamento
+nos testes T17, T18 e T40.** Zero erros de JS em todos os cenários testados.
+
+| Teste | O que falhou | Risco |
+|---|---|---|
+| T17 | Antena aceita requisição de qualquer `Origin` | R4 |
+| T18 | Antena aceita qualquer `Host` (vetor de DNS rebinding) | R4 |
+| T40 | Título de evento externo chega literal ao system prompt | R2 |
 
 Uma única anomalia observada e **não reproduzida**: o painel de e-mails ficou preso em "buscando…"
 uma vez. Três testes desenhados para reproduzir não conseguiram. Registrado como R12 (BAIXO,
@@ -132,7 +145,7 @@ não confirmado) — não afirmo que seja bug.
 
 # 7. Testes executados
 
-34 testes. Ambiente: Node 22 + Chromium headless (Playwright). Fontes externas simuladas por
+45 testes (T01–T45). Ambiente: Node 22 + Chromium headless (Playwright). Fontes externas simuladas por
 fixtures porque **o sandbox desta sessão bloqueia egress** para `calendar.google.com`,
 `news.google.com`, `imap.gmail.com` e `open-meteo.com`.
 
@@ -209,7 +222,9 @@ fixtures porque **o sandbox desta sessão bloqueia egress** para `calendar.googl
 | T44 | Clima (Open-Meteo) | — | egress bloqueado | **INCONCLUSIVO** |
 | T45 | Google Agenda / News / Gmail reais | — | egress bloqueado | **INCONCLUSIVO** |
 
-**Placar: 39 passaram · 3 falharam (T17, T18, T40) · 4 inconclusivos (T22, T43, T44, T45).**
+**Placar: 45 testes — 38 passaram · 3 falharam (T17, T18, T40) · 4 inconclusivos (T22, T43, T44, T45).**
+Soma conferida linha a linha: 38 + 3 + 4 = 45, igual ao número de testes listados (T01–T45, sem
+duplicatas nem lacunas).
 
 ---
 
@@ -219,7 +234,7 @@ fixtures porque **o sandbox desta sessão bloqueia egress** para `calendar.googl
 |---|---|---|---|
 | D1 | **Duas camadas de CSS sobrepostas** | Média | 110 dos 171 seletores do `design-layer` sobrescrevem o `<style>` original. Boa parte dos 19 KB originais é peso morto. Editar visual exige entender qual camada vence |
 | D2 | **Arquivo único de 160 KB** | Média | 3.780 linhas sem build nem módulos. Funciona (é requisito do produto), mas cresce mal |
-| D3 | **Zero testes automatizados no repo** | Média | Os 34 testes desta auditoria são scripts temporários, não versionados. Nada impede uma regressão silenciosa |
+| D3 | **Zero testes automatizados no repo** | Média | Os 45 testes desta auditoria são scripts temporários, não versionados. Nada impede uma regressão silenciosa |
 | D4 | **Cor do tema em 3 lugares** | Baixa | `:root --theme/--accent`, `CONFIG.themeColor/accentColor` e `--primary/--brand2`. Coerentes hoje via `applyTheme()`, mas os literais se repetem |
 | D5 | **Dependência total de `localStorage`** | **Alta** | 8 chaves, sem export, sem sync, sem backup. É o maior obstáculo para integrar Notion |
 | D6 | **Sem identidade estável de dados** | **Alta** | Notas usam `id` gerado por `Date.now()+random`; e-mails usam Message-ID. Não há `updated_at` nem origem. Sincronizar com Notion sem isso gera duplicata garantida |
@@ -397,5 +412,58 @@ tokens**, mas **não** valida o handshake real com o Google.
 
 Continuam sem confirmação até você rodar na sua máquina: login IMAP real, download de um `.ics`
 real do Google, RSS real do Google News, Open-Meteo, microfone real e a resposta real do Claude
-(inclusive se ele resiste à injeção do R2). São 4 testes INCONCLUSIVOS de 46 — não são detalhe,
+(inclusive se ele resiste à injeção do R2). São 4 testes INCONCLUSIVOS de 45 — não são detalhe,
 são a fronteira honesta desta auditoria.
+
+---
+
+## Histórico de correções documentais
+
+Correções feitas **apenas na documentação**. Nenhuma recomendação técnica foi alterada e nenhum
+arquivo de código foi tocado em nenhuma delas.
+
+### 03/08/2026 — Correção do risco R9 (exposição pública)
+
+| Campo | Conteúdo |
+|---|---|
+| **O que dizia** | Que o `jarvis-hauck.html` poderia estar exposto publicamente na URL do site |
+| **O que passou a dizer** | Que o arquivo **não** é publicado; o R9 permanece MÉDIO pelo acoplamento de deploy e histórico |
+| **Motivo** | Afirmação factualmente errada. O Next.js serve como estático apenas `public/`; o arquivo está na raiz e o `next.config.js` não tem `rewrites`, `headers`, `assetPrefix` nem `output` customizado |
+| **Como foi apurado** | Verificação estática da configuração. O teste por HTTP não foi possível: o sandbox bloqueia egress para `vercel.app` |
+| **Arquivos** | `MATRIZ-RISCOS.md`, `AUDITORIA-JARVIS.md`, `PLANO-PROXIMAS-ETAPAS.md` |
+
+### 03/08/2026 — Correção da contagem de testes
+
+| Campo | Conteúdo |
+|---|---|
+| **O que dizia** | "34 testes" em três pontos, e um placar de "39 passaram · 3 · 4" (soma 46) |
+| **O que passou a dizer** | **45 testes (T01–T45) — 38 passaram · 3 falharam · 4 inconclusivos** |
+| **Motivo** | Os dois números estavam errados e eram incompatíveis entre si. O "34" era resíduo de uma versão anterior do relatório, escrita quando a bateria ainda tinha menos casos; o "39 passaram" contava um teste a mais do que existe |
+| **Como foi apurado** | Contagem programática das linhas da tabela de testes: 45 IDs únicos, sem duplicatas nem lacunas, com 38 `PASSOU`, 3 `FALHOU` (T17, T18, T40) e 4 `INCONCLUSIVO` (T22, T43, T44, T45). Soma confere: 38 + 3 + 4 = 45 |
+| **Arquivos** | `AUDITORIA-JARVIS.md` (§2, §7, §8 e nota final) |
+
+### 03/08/2026 — Correção do percentual da "visão completa"
+
+| Campo | Conteúdo |
+|---|---|
+| **O que dizia** | "Média ponderada do que foi construído: ~85%. Da visão completa (com Notion/n8n): ~55%." |
+| **O que passou a dizer** | Média dos 16 módulos construídos: **84,7%**. Média das 19 linhas da tabela: **71,3%**. O "~55%" foi removido |
+| **Motivo** | O "~85%" confere com a tabela, mas o "~55%" **não era derivável dela** — a média simples das 19 linhas dá 71,3%. Era um número de julgamento apresentado como se fosse medição |
+| **Como foi apurado** | Extração e soma programática dos 19 percentuais da tabela do §3 |
+| **Arquivos** | `AUDITORIA-JARVIS.md` (§3) |
+
+### 03/08/2026 — Precisão na formulação sobre falhas
+
+| Campo | Conteúdo |
+|---|---|
+| **O que dizia** | "**Nada quebrado foi encontrado.**" |
+| **O que passou a dizer** | "**Nenhuma falha funcional foi encontrada. Foram identificadas três falhas de segurança ou isolamento nos testes T17, T18 e T40.**" mais uma tabela ligando cada falha ao seu risco |
+| **Motivo** | A formulação anterior era enganosa: sugeria que nada havia falhado, quando três testes falharam. Nenhum deles é falha *funcional* — são de segurança e isolamento — mas omitir isso do título da seção contraria o objetivo da auditoria |
+| **Arquivos** | `AUDITORIA-JARVIS.md` (§5) |
+
+### Verificações que **não** geraram correção
+
+Auditados nesta revisão e encontrados **consistentes** entre os cinco documentos, sem alteração:
+códigos de risco `R1`–`R12`, códigos de dívida `D1`–`D10`, decisões `D-1`–`D-7`, links relativos
+entre os relatórios, nomes de arquivo, e a referência de commit (`6ab7bd5`) e branch
+(`claude/jarvis-primeiro-prompt-x64d3v`).
