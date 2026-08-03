@@ -10,3 +10,6 @@ npm-debug.log*
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+
+# backups locais antes de mudanças grandes — o histórico do git já é o backup
+*.bak-*
